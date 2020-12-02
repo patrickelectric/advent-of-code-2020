@@ -38,7 +38,10 @@ fn main() {
         for (index_2, minor_value_2) in minor_chunk.iter().enumerate().skip(index_1 + 1) {
             for minor_value_3 in minor_chunk.iter().skip(index_2 + 1) {
                 if minor_value_1 + minor_value_2 + minor_value_3 == 2020 {
-                    helper::print_answer("fast way: 1-2", minor_value_1 * minor_value_2 * minor_value_3);
+                    helper::print_answer(
+                        "fast way: 1-2",
+                        minor_value_1 * minor_value_2 * minor_value_3,
+                    );
                     println!("Took: {:?}", start.elapsed());
                     std::process::exit(0);
                 }
@@ -58,7 +61,10 @@ fn main() {
                     break;
                 }
                 if minor_value_1 + minor_value_2 + major_value == 2020 {
-                    helper::print_answer("fast way: 1-2", minor_value_1 * minor_value_2 * major_value);
+                    helper::print_answer(
+                        "fast way: 1-2",
+                        minor_value_1 * minor_value_2 * major_value,
+                    );
                     println!("Took: {:?}", start.elapsed());
                     std::process::exit(0);
                 }
