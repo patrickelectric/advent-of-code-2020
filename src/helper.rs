@@ -15,6 +15,6 @@ pub fn get_numbers_from_file(filename: &str) -> Vec<u32> {
     return contents.lines().map(|line| line.parse().unwrap()).collect();
 }
 
-pub fn print_answer(name: &str, answer: u32) {
+pub fn print_answer(name: &str, answer: u64) {
     println!("The answer for {} is: {}", name, answer);
 }
