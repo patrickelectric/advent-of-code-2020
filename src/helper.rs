@@ -10,7 +10,7 @@ pub fn get_input_file(filename: &str) -> String {
     return fs::read_to_string(&input_file).expect("Input file missing.");
 }
 
-pub fn get_numbers_from_file(filename: &str) -> Vec<u32> {
+pub fn get_numbers_from_file(filename: &str) -> Vec<u64> {
     let contents = get_input_file(filename);
     return contents.lines().map(|line| line.parse().unwrap()).collect();
 }
