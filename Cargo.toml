@@ -115,5 +115,15 @@ bench = false
 name = "11-2"
 path = "src/11/2.rs"
 
+[[bin]]
+bench = false
+name = "12-1"
+path = "src/12/1.rs"
+
+[[bin]]
+bench = false
+name = "12-2"
+path = "src/12/2.rs"
+
 [dependencies]
 regex = "1"
