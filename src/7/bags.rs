@@ -41,7 +41,7 @@ pub fn get_map_of_bags(rules: &str) -> HashMap<&str, Vec<Bag>> {
 
 pub fn find_bags_that_contain(color: &str, map: &HashMap<&str, Vec<Bag>>) -> Vec<String> {
     let mut colors = vec![];
-    for (main_color, bags) in map {
+    for (&main_color, bags) in map {
         for bag in bags {
             if bag.color == color {
                 colors.push(main_color.clone().into());
@@ -52,7 +52,7 @@ pub fn find_bags_that_contain(color: &str, map: &HashMap<&str, Vec<Bag>>) -> Vec
 }
 
 pub fn get_bags_inside_bag(color: &str, map: &HashMap<&str, Vec<Bag>>) -> Vec<Bag> {
-    for (bag, bags) in map {
+    for (&bag, bags) in map {
         if *bag == color {
             return bags.clone();
         }

@@ -11,7 +11,7 @@ fn main() {
             .map(|string| string.chars().collect::<HashSet<char>>())
             .collect();
         let lines: HashSet<char> = lines.iter().fold(lines.first().unwrap().clone(), |x, y| {
-            x.intersection(y).map(|x| *x).collect::<HashSet<char>>()
+            x.intersection(y).map(|&x| x).collect::<HashSet<char>>()
         });
         answer += lines.len() as u64;
     }

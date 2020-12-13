@@ -11,8 +11,8 @@ fn main() {
         .map(|slice| slice[1] - slice[0])
         .collect();
 
-    let answer = arranged.iter().filter(|x| **x == 1 as u64).count()
-        * arranged.iter().filter(|x| **x == 3 as u64).count();
+    let answer = arranged.iter().filter(|&&x| x == 1 as u64).count()
+        * arranged.iter().filter(|&&x| x == 3 as u64).count();
 
     helper::print_answer("10-1", answer as u64)
 }
