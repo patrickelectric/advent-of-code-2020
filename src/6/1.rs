@@ -2,7 +2,7 @@ use aoc2020::helper;
 
 fn main() {
     let forms_table = helper::get_input_file("6-input.txt");
-    let mut answer: String = forms_table.lines().nth(0).unwrap().to_string();
+    let mut answer: String = forms_table.lines().next().unwrap().to_string();
     let mut answers = vec![];
     for line in forms_table.lines().skip(1) {
         if line.is_empty() {

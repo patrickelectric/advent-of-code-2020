@@ -17,8 +17,8 @@ pub struct Passport {
 impl Passport {
     //TODO: Move to macro
     pub fn update_from_string(&mut self, line: &str) {
-        let re = Regex::new(&format!(r"(?P<name>\S+):(?P<value>\S+)\b")).unwrap();
-        let values = line.split(" ");
+        let re = Regex::new(r"(?P<name>\S+):(?P<value>\S+)\b").unwrap();
+        let values = line.split(' ');
 
         for value in values {
             let captured = re.captures(value).unwrap();

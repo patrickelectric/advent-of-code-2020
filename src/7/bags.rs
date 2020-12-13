@@ -53,14 +53,14 @@ pub fn find_bags_that_contain(color: &str, map: &HashMap<&str, Vec<Bag>>) -> Vec
 
 pub fn get_bags_inside_bag(color: &str, map: &HashMap<&str, Vec<Bag>>) -> Vec<Bag> {
     for (&bag, bags) in map {
-        if *bag == color {
+        if bag == color {
             return bags.clone();
         }
     }
     return vec![];
 }
 
-pub fn get_nested_bags_quantity(bags: &Vec<Bag>, map: &HashMap<&str, Vec<Bag>>) -> u64 {
+pub fn get_nested_bags_quantity(bags: &[Bag], map: &HashMap<&str, Vec<Bag>>) -> u64 {
     let mut total = 0;
     for bag in bags {
         let inside_bags = get_bags_inside_bag(&bag.color, map);

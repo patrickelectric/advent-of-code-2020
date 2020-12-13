@@ -19,7 +19,7 @@ impl Map {
         return Self {
             map: map.clone(),
             nmap: map,
-            size: size,
+            size,
             steps: 0,
         };
     }

@@ -1,4 +1,4 @@
-pub fn get_three_hits(map: &String, jump: &(u32, u32)) -> u64 {
+pub fn get_three_hits(map: &str, jump: &(u32, u32)) -> u64 {
     let mut threes = 0;
     let mut column = 0;
 

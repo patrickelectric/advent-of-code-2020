@@ -16,7 +16,7 @@ impl Ferry {
             orientation: 90,
             n: 0,
             e: 0,
-            re: Regex::new(&format!(r"(?P<name>\S)(?P<value>\d+)")).unwrap(),
+            re: Regex::new(r"(?P<name>\S)(?P<value>\d+)").unwrap(),
         };
     }
 
