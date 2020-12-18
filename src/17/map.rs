@@ -57,7 +57,14 @@ impl Map {
                 println!("-------\nz: {}", z);
                 for y in first_layer.y..=last_layer.y {
                     for x in first_layer.x..=last_layer.x {
-                        print!("{}", if self.map[&Coordinate{x, y, z, w}] {'#'} else {'.'});
+                        print!(
+                            "{}",
+                            if self.map[&Coordinate { x, y, z, w }] {
+                                '#'
+                            } else {
+                                '.'
+                            }
+                        );
                     }
                     println!();
                 }
@@ -67,14 +74,14 @@ impl Map {
 
     pub fn count_neighbours(&self, coordinate: &Coordinate) -> u64 {
         let mut total = 0;
-        for w in coordinate.w-1..=coordinate.w+1 {
-            for z in coordinate.z-1..=coordinate.z+1 {
-                for y in coordinate.y-1..=coordinate.y+1 {
-                    for x in coordinate.x-1..=coordinate.x+1 {
+        for w in coordinate.w - 1..=coordinate.w + 1 {
+            for z in coordinate.z - 1..=coordinate.z + 1 {
+                for y in coordinate.y - 1..=coordinate.y + 1 {
+                    for x in coordinate.x - 1..=coordinate.x + 1 {
                         if self.dimensions == 3 && w != 0 {
-                            continue
+                            continue;
                         }
-                        let local_coordinate = Coordinate{x, y, z, w};
+                        let local_coordinate = Coordinate { x, y, z, w };
                         if local_coordinate == *coordinate {
                             continue;
                         }
@@ -97,17 +104,17 @@ impl Map {
         let first_layer = keys.first().unwrap();
         let last_layer = keys.last().unwrap();
 
-        for w in first_layer.w-1..=last_layer.w+1 {
-            for z in first_layer.z-1..=last_layer.z+1 {
-                for y in first_layer.y-1..=last_layer.y+1 {
-                    for x in first_layer.x-1..=last_layer.x+1 {
+        for w in first_layer.w - 1..=last_layer.w + 1 {
+            for z in first_layer.z - 1..=last_layer.z + 1 {
+                for y in first_layer.y - 1..=last_layer.y + 1 {
+                    for x in first_layer.x - 1..=last_layer.x + 1 {
                         if self.dimensions == 3 && w != 0 {
-                            continue
+                            continue;
                         }
 
-                        let coordinate = Coordinate{x, y, z, w};
+                        let coordinate = Coordinate { x, y, z, w };
                         let active = *self.map.get(&coordinate).unwrap_or(&false);
-                        let neighbours = self.count_neighbours(&Coordinate{x, y, z, w});
+                        let neighbours = self.count_neighbours(&Coordinate { x, y, z, w });
 
                         // add if does not exist
                         map.insert(coordinate.clone(), active);
