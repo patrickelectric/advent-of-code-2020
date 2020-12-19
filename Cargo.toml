@@ -185,5 +185,15 @@ bench = false
 name = "18-2"
 path = "src/18/2.rs"
 
+[[bin]]
+bench = false
+name = "19-1"
+path = "src/19/1.rs"
+
+[[bin]]
+bench = false
+name = "19-2"
+path = "src/19/2.rs"
+
 [dependencies]
 regex = "1"
