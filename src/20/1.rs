@@ -5,7 +5,7 @@ use regex::Regex;
 #[derive(Debug)]
 pub struct Tile {
     pub id: u64,
-    image: String,
+    image: Vec<String>,
 }
 
 impl Tile {
@@ -22,13 +22,7 @@ impl Tile {
             .parse::<u64>()
             .unwrap();
 
-        let image = lines.fold(String::new(), |a, b| {
-            if a.is_empty() {
-                b.to_string()
-            } else {
-                a + "\n" + b
-            }
-        });
+        let image = lines.map(|line| line.into()).collect();
 
         return Self { id, image };
     }
