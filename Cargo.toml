@@ -197,6 +197,11 @@ path = "src/19/2.rs"
 
 [[bin]]
 bench = false
+name = "20-1"
+path = "src/20/1.rs"
+
+[[bin]]
+bench = false
 name = "21-1"
 path = "src/21/1.rs"
 
