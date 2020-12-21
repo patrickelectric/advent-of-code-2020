@@ -168,7 +168,12 @@ impl Image {
         let bottom_left = (keys_x.first().unwrap(), keys_y.first().unwrap());
         let bottom_right = (keys_x.last().unwrap(), keys_y.first().unwrap());
 
-        return vec![top_left, top_right, bottom_left, bottom_right].iter().map(|(&x, &y)| self.map.get(&(x, y)).unwrap().id).collect::<Vec<u64>>().iter().product();
+        return vec![top_left, top_right, bottom_left, bottom_right]
+            .iter()
+            .map(|(&x, &y)| self.map.get(&(x, y)).unwrap().id)
+            .collect::<Vec<u64>>()
+            .iter()
+            .product();
     }
 }
 
@@ -185,7 +190,6 @@ fn main() {
         for tile in tiles.iter() {
             image.assembly(tile);
         }
-
     }
 
     helper::print_answer("20-1", image.check_value());
@@ -266,7 +270,6 @@ mod tests {
             for tile in tiles.iter() {
                 image.assembly(tile);
             }
-
         }
         assert_eq!(image.check_value(), 20899048083289);
     }
