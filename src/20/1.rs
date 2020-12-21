@@ -182,7 +182,7 @@ fn main() {
     let tiles: Vec<Tile> = content.split("\n\n").map(|tile| Tile::new(tile)).collect();
     let mut image = Image::new(&tiles.first().unwrap());
     loop {
-        println!("image.len: {}", image.map.len());
+        println!("image.len: {}/{}", image.map.len(), tiles.len());
         if image.map.len() == tiles.len() {
             break;
         }
