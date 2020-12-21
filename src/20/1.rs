@@ -104,15 +104,48 @@ impl Tile {
     }
 }
 
+#[derive(Debug)]
 pub struct Image {
-    tiles: HashMap<(i64, i64), Tile>,
+    pub map: HashMap<(i64, i64), Tile>,
 }
 
 impl Image {
     pub fn new(tile: &Tile) -> Self {
         let mut hash_map = HashMap::new();
         hash_map.insert((0, 0), tile.clone());
-        return Image { tiles: hash_map };
+        return Image { map: hash_map };
+    }
+
+    pub fn assembly(&mut self, tile: &Tile) -> bool {
+        for (&(x, y), map_tile) in self.map.clone().iter() {
+            match tile.matches(map_tile) {
+                Some(transform) => {
+                    println!("{:#?}", transform);
+                    let map_position = match transform.side {
+                        0 => (x, y - 1),
+                        1 => (x - 1, y),
+                        2 => (x, y + 1),
+                        3 => (x + 1, y),
+                        _ => unreachable!(),
+                    };
+                    let mut tile = tile.clone();
+                    if transform.flip {
+                        tile.flip();
+                    }
+                    for _ in 0..transform.rotate {
+                        tile.rotate();
+                    }
+                    self.map.insert(map_position, tile.clone());
+                }
+                _ => continue,
+            }
+        }
+        return false;
+    }
+
+    pub fn check_value(&self) -> u64 {
+        println!("{:#?}", self.map.keys());
+        return 0;
     }
 }
 
@@ -147,8 +180,8 @@ mod tests {
             tile_2311.clone().flip().sides(),
             vec!["..###..###", "#..##.#...", "..##.#..#.", ".#..#####."]
         );
-        //println!("{:#?}", tile_2311);
-        //println!("{:#?}", tile_1951);
+        println!("{:#?}", tile_2311);
+        println!("{:#?}", tile_1951);
         assert_eq!(
             tile_2311.clone().matches(&tile_1951),
             Some(Transform {
@@ -165,5 +198,21 @@ mod tests {
                 side: 1
             })
         );
+
+        let mut image = Image::new(&tile_1951);
+        image.assembly(&tile_2311);
+        println!("{:#?}", image);
+
+        loop {
+            if image.map.len() == tiles.len() {
+                break;
+            }
+
+            for tile in tiles.iter() {
+                image.assembly(tile);
+            }
+        }
+        println!("{:#?}", image);
+        image.check_value();
     }
 }
