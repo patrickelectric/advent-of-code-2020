@@ -33,6 +33,8 @@ pub fn find_monster(image: &Vec<String>) -> u64 {
         .map(|line| line.replace(" ", r"\S").into())
         .collect::<Vec<String>>();
 
+    println!("{:#?}", monster_mask);
+
     let mut line_iter = image.iter();
     let mut mask_iter = monster_mask.iter();
 
@@ -55,7 +57,7 @@ pub fn find_monster(image: &Vec<String>) -> u64 {
 }
 
 fn main() {
-    let content = include_str!("example.txt");//helper::get_input_file("20-input.txt");
+    let content = helper::get_input_file("20-input.txt");
     let tiles: Vec<Tile> = content.split("\n\n").map(|tile| Tile::new(tile)).collect();
     let mut image = Image::new(&tiles.first().unwrap());
     loop {
@@ -79,7 +81,7 @@ fn main() {
             if rotate_amount != 0 {
                 image = rotate(&image);
             }
-            println!("{:#?}", image);
+            //println!("{:#?}", image);
             let amount = find_monster(&image);
             println!("flip: {}, rotate: {}, momsters: {}", flip_image, rotate_amount, amount);
             monsters += amount;
@@ -90,10 +92,11 @@ fn main() {
         }
     }
 
+    //2806
     let waves: u64 = original_image.iter().map(|line| line.chars().filter(|character| character == &'#').count() as u64).sum::<u64>() - monsters * 15;
     println!("monsters: {}", monsters);
 
-    helper::print_answer("20-2", waves); // high 20806
+    helper::print_answer("20-2", waves); // high 20806, high 2806
 }
 
 #[cfg(test)]

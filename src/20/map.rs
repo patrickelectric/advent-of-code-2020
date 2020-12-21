@@ -134,9 +134,9 @@ impl Image {
             match map_tile.matches(tile) {
                 Some(transform) => {
                     let map_position = match transform.side {
-                        0 => (x, y + 1),
+                        0 => (x, y - 1),
                         1 => (x + 1, y),
-                        2 => (x, y - 1),
+                        2 => (x, y + 1),
                         3 => (x - 1, y),
                         _ => unreachable!(),
                     };
@@ -193,17 +193,22 @@ impl Image {
         let mut new_image: Vec<String> =
             vec![String::new(); (height + 1) * (first_tile.image.len() - 2)];
 
-        for y in ((position.1).1..=(position.0).1).rev() {
+        for y in (position.1).1..=(position.0).1 {
             for x in (position.0).0..=(position.1).0 {
                 let tile_image = &self.map[&(x, y)].image;
+                println!("id: {}", &self.map[&(x, y)].id);
                 for (index, line) in tile_image[1..tile_image.len() - 1].iter().enumerate() {
-                    let y = y.abs();
+                    let y = y + (position.1).1.abs();
                     let line = &line.to_string()[1..line.len() - 1];
                     let line_y_position = index + y as usize * (first_tile.image.len() - 2);
-                    new_image[line_y_position] += line.into();
+                    println!("y: {}", y);
+                    println!("line_y_position: {}", line_y_position);
+                    new_image[line_y_position] = format!("{}{}", new_image[line_y_position].clone()/*, line_y_position*/, line);
                 }
             }
         }
+
+        println!("newimage:\n{:#?}", new_image);
 
         return new_image;
     }
