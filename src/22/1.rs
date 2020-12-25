@@ -5,10 +5,13 @@ pub fn solve(game: &str) -> u64 {
     for line in game.lines().filter(|line| !line.is_empty()) {
         if line.contains("Player") {
             players.push(vec![]);
-            continue
+            continue;
         }
 
-        players.last_mut().unwrap().push(line.parse::<u64>().unwrap());
+        players
+            .last_mut()
+            .unwrap()
+            .push(line.parse::<u64>().unwrap());
     }
 
     let mut players_iter = players.iter_mut();
@@ -30,7 +33,11 @@ pub fn solve(game: &str) -> u64 {
     }
 
     let final_vector = [&first_player[..], &second_player[..]].concat();
-    let result: u64 = final_vector.iter().enumerate().map(|(index, value)| value * (final_vector.len() - index) as u64).sum();
+    let result: u64 = final_vector
+        .iter()
+        .enumerate()
+        .map(|(index, value)| value * (final_vector.len() - index) as u64)
+        .sum();
     return result;
 }
 

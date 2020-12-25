@@ -200,7 +200,11 @@ impl Image {
                     let y = y + (position.1).1.abs();
                     let line = &line.to_string()[1..line.len() - 1];
                     let line_y_position = index + y as usize * (first_tile.image.len() - 2);
-                    new_image[line_y_position] = format!("{}{}", new_image[line_y_position].clone()/*, line_y_position*/, line);
+                    new_image[line_y_position] = format!(
+                        "{}{}",
+                        new_image[line_y_position].clone(), /*, line_y_position*/
+                        line
+                    );
                 }
             }
         }
