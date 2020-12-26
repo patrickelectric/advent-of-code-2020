@@ -225,5 +225,10 @@ bench = false
 name = "24-1"
 path = "src/24/1.rs"
 
+[[bin]]
+bench = false
+name = "25-1"
+path = "src/25/1.rs"
+
 [dependencies]
 regex = "1"
